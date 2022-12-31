@@ -1,0 +1,32 @@
+syntax = "proto3";
+package tk.mwacha.grpc;
+option java_multiple_files = true;
+
+message Category {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+
+message CategoryList {
+  repeated Category categories = 1;
+}
+
+message CategoryGetRequest {
+  string id = 1;
+}
+
+message DeleteCategoryRequest {
+  string id = 1;
+}
+
+
+message Empty {}
+
+service CategoryService {
+  rpc Create (Category) returns (Category) {}
+  rpc List (Empty) returns (CategoryList) {}
+  rpc GetCategory(CategoryGetRequest) returns (Category) {}
+  rpc DeleteCategory(DeleteCategoryRequest) returns (Category) {};
+}
